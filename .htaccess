@@ -1,0 +1,12 @@
+AddDefaultCharset utf-8
+RewriteEngine on
+RewriteRule ^case/(.*) index.php?module=case&name=$1 [R]
+RewriteRule ^user/(.*) index.php?module=user&id=$1 [R]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?module=$1 [L,QSA]
+
+<IfModule mod_rewrite.c>
+ RewriteCond %{REQUEST_URI} /+[^\.]+$
+ RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+</IfModule>
