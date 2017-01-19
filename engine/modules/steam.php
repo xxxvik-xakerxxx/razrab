@@ -41,7 +41,8 @@ if($Functions->isLogged()){
 					if(!empty($player)){
 						$getPlayer = $Functions->db->query("SELECT * FROM users WHERE steamid = '".$player->steamid."'");
 						if($getPlayer->num_rows == 0){
-							$Functions->db->query("INSERT INTO `users`(`steamid`, `name`, `avatar`, `money`, `created`, `status`) VALUES ('".$player->steamid."', '".$player->personaname."', '".$player->avatarfull."', '0', '".time()."', '1')");
+                            $num = uniqid();
+							$Functions->db->query("INSERT INTO `users`(`steamid`, `name`, `avatar`, `money`, `created`,`num`, `status`) VALUES ('".$player->steamid."', '".$player->personaname."', '".$player->avatarfull."', '0', '".time()."','$num','1')");
 						}else{
                             $Functions->db->query("UPDATE users SET name = '".$Functions->getString($player->personaname)."', avatar = '".$player->avatarfull."' WHERE steamid = '".$player->steamid."'");
 							$_SESSION['name'] = $player->personaname;
