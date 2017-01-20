@@ -18,6 +18,9 @@ class Functions{
         }
         mysqli_query($this->db, "SET NAMES utf8");
     }
+	public function getnum(){
+		return crypt($_SESSION['steamid'],CRYPT_MD5);
+	}
     public function getTemplate($name){
         $file = $_SERVER['DOCUMENT_ROOT']."/template/".$name.".tpl";
         if(!is_file($file)){
